@@ -11,22 +11,15 @@
       "firstName": "Bartosz",
       "lastName": "Zawada",
       "phoneNumber": "664922285",
-      "email": "bart@bart.pl",
+      "email": "bartzawada@gmail.com",
       "id": 2
     },
     {
-      "firstName": "Testowy",
-      "lastName": "Ziomeczek",
-      "phoneNumber": "922-222-222",
-      "email": "testowy@testowy.com.pl",
-      "id": 11
-    },
-    {
-      "firstName": "Wincyj",
-      "lastName": "Ziom",
-      "phoneNumber": "gy",
-      "email": "asd@asd.pl",
-      "id": 15
+      "firstName": "Borubar",
+      "lastName": "Zasada",
+      "phoneNumber": "664922285",
+      "email": "bartzawada@gmail.com",
+      "id": 6
     }
   ]
 }

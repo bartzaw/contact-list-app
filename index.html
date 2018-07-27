@@ -2,12 +2,17 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Bartosz Zawada">
+    <meta name="description" content="Contact-list application - homework">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact List</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="assets/reset.css">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
     <div class="contacts-newContact">
-        <h1>Add new contact:</h1>
+        <h1 class="form-header header">Add new contact:</h1>
         <div class="contacts-category">
             <label class='contact-label'>First Name:</label>
             <input id="firstName" class="contact-input">
@@ -24,12 +29,12 @@
             <label class='contact-label'>Email:</label>
             <input id="emailAddress" class="contact-input">
         </div>
-        <button class="btn" id="contacts-addButton">Add</button>
+        <div class="btn" id="contacts-addButton"></div>
     </div>
     <div class="contacts-container">
         <ul id="contacts"></ul>
     </div>
-    <button class="btn" id="contacts-removeButton__selected">Remove</button>
+    <div id="contacts-removeButton__selected" title="Remove selected"></div>
     <script src="assets/main.js"></script>
 </body>
 </html>

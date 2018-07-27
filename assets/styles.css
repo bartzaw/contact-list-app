@@ -1,9 +1,121 @@
 * {
-    outline: solid 1px red;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
-.contacts-single__delete {
-    height: 10px;
-    width: 10px;
-    background: pink;
+body {
+    display: flex;
+    flex-direction: column;
+    color: #9045B5;
+    background: url("cork-background.jpg");
 }
+
+.contacts-newContact {
+    background: url("orange-background.png");
+    text-align: center;
+    align-self: center;
+    height: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #9045B5;
+    width: 75%;
+}
+
+.contacts-category {
+    display: flex;
+    width: 50%;
+    height: 50px;
+    justify-content: center;
+}
+
+.contact-label {
+    font-weight: bold;
+
+    width: 125px;
+    align-self: center;
+}
+
+.contact-input {
+    width: 200px;
+    align-self: center;
+}
+.contacts-container {
+    width: 100%;
+}
+
+#contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header {
+    text-align: center;
+    font-weight: bold;
+}
+.form-header {
+    font-size: 42px;
+    width: 100%;
+}
+
+.contact-card {
+    width: 72%;
+    background: #C2B17A;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: bold;
+    margin: 5px 0;
+    border: 1px dashed #9045B5;
+}
+
+.contact-card * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24%;
+    font-size: 20px;
+}
+
+.btn {
+    height: 81px;
+    width: 81px;
+}
+.contacts-single__delete {
+    padding-top: 10px;
+    align-content: baseline;
+    background: url("delete-small.png") no-repeat center center;
+}
+
+.contacts-single__edit {
+    background: url("edit-icon.png") no-repeat center center;
+}
+
+.edit-mode {
+    display: flex;
+    flex: 1;
+}
+
+.contacts-button__save {
+    background: url("save.png")no-repeat center center;
+}
+
+.contacts-checkbox {
+    height: 32px;
+    align-self: center;
+    align-content: center;
+}
+
+#contacts-removeButton__selected {
+    background: url("delete-all.png") no-repeat center center;
+    align-self: center;
+    height: 64px;
+    width: 64px;
+    margin-top: 50px;
+}
+
+#contacts-addButton {
+    background: url("plus-button.png") no-repeat center center;
+    margin: auto;
+}
+
