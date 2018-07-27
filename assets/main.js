@@ -9,6 +9,7 @@ var removeSelectedButton = document.getElementById('contacts-removeButton__selec
 syncContacts();
 
 addContactButton.addEventListener('click', validateNewContactData);
+
 phoneNode.addEventListener('focusout', function () {
     validatePhoneNumber(phoneNode.value)
 });
@@ -51,8 +52,10 @@ function createContactCard(contact) {
     var deleteSingle = document.createElement('div');
     var contactCheckbox = document.createElement('input');
     var editModeButton = document.createElement('div');
+    contactNode.classList.add('contact-card');
     contactCheckbox.type = 'checkbox';
     contactCheckbox.classList.add('contacts-checkbox');
+    contactCheckbox.title = 'Select to remove multiple';
     contactCheckbox.id = contact.id;
     contactNode.id = contact.id;
     fillCardWithData(contact, name, phoneNumber, email);
@@ -62,8 +65,8 @@ function createContactCard(contact) {
     contactNode.append(phoneNumber);
     contactNode.append(email);
     contactNode.append(contactCheckbox);
-    contactNode.append(deleteSingle);
     contactNode.append(editModeButton);
+    contactNode.append(deleteSingle);
     contactsList.append(contactNode);
 }
 
@@ -117,6 +120,8 @@ function updateContact(firstName, lastName, phone, mail, id) {
 
 function addDeleteButtonToCard (button, contact) {
     button.classList.add('contacts-single__delete');
+    button.classList.add('btn');
+    button.title = 'Delete this contact';
     button.addEventListener('click', function () {
         removeContact(contact.id)
     })
@@ -124,6 +129,8 @@ function addDeleteButtonToCard (button, contact) {
 
 function addEditButtonToCard (button, contact, container) {
     button.classList.add('contacts-single__edit');
+    button.classList.add('btn');
+    button.title = 'Edit this contact';
     button.addEventListener('click', function () {
         var editModeDiv = document.querySelector('.edit-mode');
         if (!document.body.contains(editModeDiv)) {
@@ -150,6 +157,7 @@ function editModeForm (container, contact) {
     var editPhoneNumber = document.createElement('input');
     var editEmailAddress = document.createElement('input');
     saveButton.classList.add('contacts-button__save');
+    saveButton.classList.add('btn');
     editFirstName.value = contact.firstName;
     editFirstName.classList.add('edited-element');
     editLastName.value = contact.lastName;
