@@ -9,8 +9,12 @@ var removeSelectedButton = document.getElementById('contacts-removeButton__selec
 syncContacts();
 
 addContactButton.addEventListener('click', validateNewContactData);
-phoneNode.addEventListener('focusout', function() {
+phoneNode.addEventListener('focusout', function () {
     validatePhoneNumber(phoneNode.value)
+});
+
+emailNode.addEventListener('focusout', function () {
+    validateEmailAddress(emailNode.value)
 });
 
 removeSelectedButton.addEventListener('click', function() {
@@ -162,6 +166,9 @@ function editModeForm (container, contact) {
     editPhoneNumber.addEventListener('focusout', function() {
         validatePhoneNumber(editPhoneNumber.value)
     });
+    editEmailAddress.addEventListener('focusout', function () {
+        validateEmailAddress(editEmailAddress.value)
+    });
 
     saveButton.addEventListener('click', function () {
         if(!validateEditedContactData()) {
@@ -203,6 +210,17 @@ function validatePhoneNumber(phone) {
         return true
     } else {
         alert('Number needs to contain 9 digits without blank spaces. Please try again')
+    }
+}
+
+function validateEmailAddress(mail) {
+    var validEmailCharacters = new RegExp(/[a-z0-9._]+@[a-z0-9.-]+\.[a-z]/gi);
+    if (mail.match(validEmailCharacters)) {
+        return true
+    } else if (mail === '' ) {
+        return true
+    } else {
+        alert ('This email address is not correct. Please try again');
     }
 }
 
