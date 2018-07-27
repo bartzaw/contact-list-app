@@ -46,15 +46,15 @@ function createContactCard(contact) {
 }
 
 function fillCardWithData(contact, name, phone, mail) {
-    name.innerHTML = contact.firstName + ' ' + contact.surname;
+    name.innerHTML = contact.firstName + ' ' + contact.lastName;
     phone.innerHTML = contact.phoneNumber;
     mail.innerHTML = contact.email;
 }
 
 function sortContacts(contactA, contactB) {
-    if (contactA.surname < contactB.surname) {
+    if (contactA.lastName < contactB.lastName) {
         return -1;
-    } else if (contactA.surname> contactB.surname) {
+    } else if (contactA.lastName> contactB.lastName) {
         return 1;
     }
     return 0;
