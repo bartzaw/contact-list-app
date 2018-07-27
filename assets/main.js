@@ -118,9 +118,27 @@ function removeContact(id) {
     })
 }
 
+function updateContact(firstName, lastName, phone, mail, id) {
+    var updatedContact = {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phone,
+        email: mail
+    };
+    fetch(
+        'http://localhost:3000/contacts/' + id, {
+            method: 'PATCH',
+            body: JSON.stringify(updatedContact),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(syncContacts)
+}
+
 function addDeleteButtonToCard (button, contact) {
     button.classList.add('contacts-single__delete');
     button.addEventListener('click', function () {
         removeContact(contact.id)
     })
 }
+
