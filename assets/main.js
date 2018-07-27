@@ -47,16 +47,20 @@ function createContactCard(contact) {
     var email = document.createElement('p');
     var deleteSingle = document.createElement('div');
     var contactCheckbox = document.createElement('input');
+    var editModeButton = document.createElement('div');
     contactCheckbox.type = 'checkbox';
     contactCheckbox.classList.add('contacts-checkbox');
     contactCheckbox.id = contact.id;
+    contactNode.id = contact.id;
     fillCardWithData(contact, name, phoneNumber, email);
     addDeleteButtonToCard(deleteSingle, contact);
+    addEditButtonToCard(editModeButton, contact, contactNode);
     contactNode.append(name);
     contactNode.append(phoneNumber);
     contactNode.append(email);
     contactNode.append(contactCheckbox);
     contactNode.append(deleteSingle);
+    contactNode.append(editModeButton);
     contactsList.append(contactNode);
 }
 
@@ -130,22 +134,44 @@ function addDeleteButtonToCard (button, contact) {
 function addEditButtonToCard (button, contact, container) {
     button.classList.add('contacts-single__edit');
     button.addEventListener('click', function () {
-        var editMode = document.getElementsByClassName('.edit-mode');
-        document.body.contains(editMode) ? container.removeChild(editMode) : showEditMode(contact)
+        var editModeDiv = document.querySelector('.edit-mode');
+        if (!document.body.contains(editModeDiv)) {
+            showEditMode(contact)
+        } else {
+            container.removeChild(editModeDiv)
+        }
     })
 }
 
 function showEditMode (contact) {
     var editForm = document.createElement('div');
-    var listItem = document.getElementById(contact.id);
-    editForm.classList.add('edit-mode')
-    createEditModeForm(editForm, contact);
-    listItem.append(editForm)
+    var listElement = document.getElementById(contact.id);
+    editForm.classList.add('edit-mode');
+    editModeForm(editForm, contact);
+    listElement.append(editForm);
     return editForm
 }
 
-function createEditModeForm () {
-
+function editModeForm (container, contact) {
+    var saveButton = document.createElement('button');
+    var editFirstName = document.createElement('input');
+    var editLastName = document.createElement('input');
+    var editPhoneNumber = document.createElement('input');
+    var editEmailAddress = document.createElement('input');
+    saveButton.classList.add('contacts-button__save');
+    editFirstName.value = contact.firstName;
+    editFirstName.classList.add('editing-element');
+    editLastName.value = contact.lastName;
+    editLastName.classList.add('editing-element');
+    editPhoneNumber.value = contact.phoneNumber;
+    editPhoneNumber.classList.add('editing-element');
+    editEmailAddress.value = contact.email;
+    editEmailAddress.classList.add('editing-element');
+    container.append(editFirstName);
+    container.append(editLastName);
+    container.append(editPhoneNumber);
+    container.append(editEmailAddress);
+    container.append(saveButton);
 }
 
 function fillCardWithData(contact, name, phone, mail) {
