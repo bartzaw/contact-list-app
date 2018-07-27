@@ -9,3 +9,26 @@ function getContacts() {
         }
     )
 }
+
+function displayContacts(contacts) {
+    contactsList.innerHTML = '';
+    contacts.forEach(function(contact){
+        createContactCard(contact)
+
+    })
+}
+
+function createContactCard(contact) {
+    var contactNode = document.createElement('li');
+    var name = document.createElement('li');
+    var phoneNumber = document.createElement('p');
+    var email = document.createElement('p');
+    var contactCheckbox = document.createElement('input');
+    contactCheckbox.type = 'checkbox';
+    contactCheckbox.classList.add('contacts-checkbox');
+    contactCheckbox.id = contact.id;
+    contactNode.append(name);
+    contactNode.append(phoneNumber);
+    contactNode.append(email);
+    contactsList.append(contactNode);
+}
