@@ -1,0 +1,8 @@
+* {
+    outline: solid 1px red;
+}
+
+.contacts-container {
+    height: 100px;
+    width: 400px;
+}

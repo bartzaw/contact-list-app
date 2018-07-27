@@ -4,6 +4,8 @@ var surnameNode = document.getElementById('surname');
 var phoneNode = document.getElementById('phoneNumber');
 var emailNode = document.getElementById('emailAddress');
 
+syncContacts();
+
 function getContacts() {
     return fetch (
         'http://localhost:3000/tasks'
@@ -14,11 +16,15 @@ function getContacts() {
     )
 }
 
+function syncContacts() {
+    getContacts().then(displayContacts)
+}
+
 function displayContacts(contacts) {
     contactsList.innerHTML = '';
+    contacts.sort(sortContacts);
     contacts.forEach(function(contact){
         createContactCard(contact)
-
     })
 }
 
@@ -43,4 +49,13 @@ function fillCardWithData(contact, name, phone, mail) {
     name.innerHTML = contact.firstName + ' ' + contact.surname;
     phone.innerHTML = contact.phoneNumber;
     mail.innerHTML = contact.email;
+}
+
+function sortContacts(contactA, contactB) {
+    if (contactA.surname < contactB.surname) {
+        return -1;
+    } else if (contactA.surname> contactB.surname) {
+        return 1;
+    }
+    return 0;
 }
