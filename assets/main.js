@@ -60,21 +60,6 @@ function createContactCard(contact) {
     contactsList.append(contactNode);
 }
 
-function fillCardWithData(contact, name, phone, mail) {
-    name.innerHTML = contact.firstName + ' ' + contact.lastName;
-    phone.innerHTML = contact.phoneNumber;
-    mail.innerHTML = contact.email;
-}
-
-function sortContacts(contactA, contactB) {
-    if (contactA.lastName < contactB.lastName) {
-        return -1;
-    } else if (contactA.lastName> contactB.lastName) {
-        return 1;
-    }
-    return 0;
-}
-
 function addNewContact() {
     var contact = {
         firstName: firstNameNode.value,
@@ -140,5 +125,41 @@ function addDeleteButtonToCard (button, contact) {
     button.addEventListener('click', function () {
         removeContact(contact.id)
     })
+}
+
+function addEditButtonToCard (button, contact, container) {
+    button.classList.add('contacts-single__edit');
+    button.addEventListener('click', function () {
+        var editMode = document.getElementsByClassName('.edit-mode');
+        document.body.contains(editMode) ? container.removeChild(editMode) : showEditMode(contact)
+    })
+}
+
+function showEditMode (contact) {
+    var editForm = document.createElement('div');
+    var listItem = document.getElementById(contact.id);
+    editForm.classList.add('edit-mode')
+    createEditModeForm(editForm, contact);
+    listItem.append(editForm)
+    return editForm
+}
+
+function createEditModeForm () {
+
+}
+
+function fillCardWithData(contact, name, phone, mail) {
+    name.innerHTML = contact.firstName + ' ' + contact.lastName;
+    phone.innerHTML = contact.phoneNumber;
+    mail.innerHTML = contact.email;
+}
+
+function sortContacts(contactA, contactB) {
+    if (contactA.lastName < contactB.lastName) {
+        return -1;
+    } else if (contactA.lastName> contactB.lastName) {
+        return 1;
+    }
+    return 0;
 }
 
