@@ -8,7 +8,7 @@ var removeSelectedButton = document.getElementById('contacts-removeButton__selec
 
 syncContacts();
 
-addContactButton.addEventListener('click', validateContactData);
+addContactButton.addEventListener('click', validateNewContactData);
 
 removeSelectedButton.addEventListener('click', function() {
     var selectedContacts = document.querySelectorAll('.contacts-checkbox:checked');
@@ -83,18 +83,6 @@ function addNewContact() {
     })
 }
 
-function validateContactData() {
-    var newData = Array.from(document.getElementsByClassName('contact-input'));
-    var newDataValues = newData.map(input => input.value);
-    var isEveryFieldFilled = function (input) {
-        return input === '';
-    };
-    if (newDataValues.some(isEveryFieldFilled)) {
-        alert('Please fill all fields before submitting')
-    } else {
-        addNewContact()
-    }
-}
 function removeContact(id) {
     fetch(
         'http://localhost:3000/contacts/' + id, {
@@ -172,6 +160,22 @@ function editModeForm (container, contact) {
     container.append(editPhoneNumber);
     container.append(editEmailAddress);
     container.append(saveButton);
+    saveButton.addEventListener('click', function () {
+        updateContact(editFirstName.value, editLastName.value, editPhoneNumber.value, editEmailAddress.value, contact.id)
+    })
+}
+
+function validateNewContactData() {
+    var newData = Array.from(document.getElementsByClassName('contact-input'));
+    var newDataValues = newData.map(input => input.value);
+    var isEveryFieldFilled = function (input) {
+        return input === '';
+    };
+    if (newDataValues.some(isEveryFieldFilled)) {
+        alert('Please fill all fields before submitting')
+    } else {
+        addNewContact()
+    }
 }
 
 function fillCardWithData(contact, name, phone, mail) {
