@@ -8,7 +8,7 @@ syncContacts();
 
 function getContacts() {
     return fetch (
-        'http://localhost:3000/tasks'
+        'http://localhost:3000/contacts'
     ).then(
         function (response) {
             return response.json()
