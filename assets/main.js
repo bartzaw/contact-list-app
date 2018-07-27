@@ -9,7 +9,6 @@ var removeSelectedButton = document.getElementById('contacts-removeButton__selec
 syncContacts();
 
 addContactButton.addEventListener('click', validateNewContactData);
-
 phoneNode.addEventListener('focusout', function() {
     validatePhoneNumber(phoneNode.value)
 });
@@ -160,8 +159,12 @@ function editModeForm (container, contact) {
     container.append(editPhoneNumber);
     container.append(editEmailAddress);
     container.append(saveButton);
+    editPhoneNumber.addEventListener('focusout', function() {
+        validatePhoneNumber(editPhoneNumber.value)
+    });
+
     saveButton.addEventListener('click', function () {
-        if(validateEditedContactData()) {
+        if(!validateEditedContactData()) {
          updateContact(editFirstName.value, editLastName.value, editPhoneNumber.value, editEmailAddress.value,
                        contact.id)
         } else {
@@ -221,4 +224,3 @@ function sortContacts(contactA, contactB) {
 function syncContacts() {
     getContacts().then(displayContacts)
 }
-
