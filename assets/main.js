@@ -3,9 +3,11 @@ var firstNameNode = document.getElementById('firstName');
 var surnameNode = document.getElementById('surname');
 var phoneNode = document.getElementById('phoneNumber');
 var emailNode = document.getElementById('emailAddress');
-var addContactButton = document.getElementById('contacts-addButton')
+var addContactButton = document.getElementById('contacts-addButton');
 
 syncContacts();
+
+addContactButton.addEventListener('click', validateContactData);
 
 function getContacts() {
     return fetch (
@@ -78,4 +80,17 @@ function addNewContact() {
         }).then(function () {
             syncContacts()
     })
+}
+
+function validateContactData() {
+    var newData = Array.from(document.getElementsByClassName('contact-input'));
+    var newDataValues = newData.map(input => input.value);
+    var isEveryFieldFilled = function (input) {
+        return input === '';
+    };
+    if (newDataValues.some(isEveryFieldFilled)) {
+        alert('Please fill all fields before submitting')
+    } else {
+        addNewContact()
+    }
 }
