@@ -11,7 +11,7 @@ syncContacts();
 addContactButton.addEventListener('click', validateContactData);
 
 removeSelectedButton.addEventListener('click', function() {
-    var selectedContacts = document.querySelectorAll('.checkbox:checked');
+    var selectedContacts = document.querySelectorAll('.contacts-checkbox:checked');
     selectedContacts.forEach(function (selectedItem) {
         var contactId = selectedItem.getAttribute('id');
         removeContact(contactId)
