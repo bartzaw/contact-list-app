@@ -3,6 +3,7 @@ var firstNameNode = document.getElementById('firstName');
 var surnameNode = document.getElementById('surname');
 var phoneNode = document.getElementById('phoneNumber');
 var emailNode = document.getElementById('emailAddress');
+var addContactButton = document.getElementById('contacts-addButton')
 
 syncContacts();
 
@@ -58,4 +59,23 @@ function sortContacts(contactA, contactB) {
         return 1;
     }
     return 0;
+}
+
+function addNewContact() {
+    var contact = {
+        firstName: firstNameNode.value,
+        lastName: surnameNode.value,
+        phoneNumber: phoneNode.value,
+        email: emailNode.value
+    };
+    fetch(
+        'http://localhost:3000/contacts', {
+            method: 'POST',
+            body: JSON.stringify(contact),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function () {
+            syncContacts()
+    })
 }
