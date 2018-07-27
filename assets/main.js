@@ -10,6 +10,10 @@ syncContacts();
 
 addContactButton.addEventListener('click', validateNewContactData);
 
+phoneNode.addEventListener('focusout', function() {
+    validatePhoneNumber(phoneNode.value)
+});
+
 removeSelectedButton.addEventListener('click', function() {
     var selectedContacts = document.querySelectorAll('.contacts-checkbox:checked');
     selectedContacts.forEach(function (selectedItem) {
@@ -186,6 +190,17 @@ function validateEditedContactData() {
         return input === '';
     };
     return editedDataValues.some(isEveryFieldFilled)
+}
+
+function validatePhoneNumber(phone) {
+    var validPhoneCharacters = new RegExp(/^\d{9}$/g);
+    if (phone.match(validPhoneCharacters)) {
+        return true
+    } else if (phone === '') {
+        return true
+    } else {
+        alert('Number needs to contain 9 digits without blank spaces. Please try again')
+    }
 }
 
 function fillCardWithData(contact, name, phone, mail) {
