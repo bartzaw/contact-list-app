@@ -45,15 +45,18 @@ function createContactCard(contact) {
     var name = document.createElement('li');
     var phoneNumber = document.createElement('p');
     var email = document.createElement('p');
+    var deleteSingle = document.createElement('div');
     var contactCheckbox = document.createElement('input');
     contactCheckbox.type = 'checkbox';
     contactCheckbox.classList.add('contacts-checkbox');
     contactCheckbox.id = contact.id;
     fillCardWithData(contact, name, phoneNumber, email);
+    addDeleteButtonToCard(deleteSingle, contact);
     contactNode.append(name);
     contactNode.append(phoneNumber);
     contactNode.append(email);
     contactNode.append(contactCheckbox);
+    contactNode.append(deleteSingle);
     contactsList.append(contactNode);
 }
 
@@ -112,5 +115,12 @@ function removeContact(id) {
             }
         }).then(function () {
         syncContacts()
+    })
+}
+
+function addDeleteButtonToCard (button, contact) {
+    button.classList.add('contacts-single__delete');
+    button.addEventListener('click', function () {
+        removeContact(contact.id)
     })
 }
