@@ -28,10 +28,6 @@ function getContacts() {
     )
 }
 
-function syncContacts() {
-    getContacts().then(displayContacts)
-}
-
 function displayContacts(contacts) {
     contactsList.innerHTML = '';
     contacts.sort(sortContacts);
@@ -148,20 +144,25 @@ function editModeForm (container, contact) {
     var editEmailAddress = document.createElement('input');
     saveButton.classList.add('contacts-button__save');
     editFirstName.value = contact.firstName;
-    editFirstName.classList.add('editing-element');
+    editFirstName.classList.add('edited-element');
     editLastName.value = contact.lastName;
-    editLastName.classList.add('editing-element');
+    editLastName.classList.add('edited-element');
     editPhoneNumber.value = contact.phoneNumber;
-    editPhoneNumber.classList.add('editing-element');
+    editPhoneNumber.classList.add('edited-element');
     editEmailAddress.value = contact.email;
-    editEmailAddress.classList.add('editing-element');
+    editEmailAddress.classList.add('edited-element');
     container.append(editFirstName);
     container.append(editLastName);
     container.append(editPhoneNumber);
     container.append(editEmailAddress);
     container.append(saveButton);
     saveButton.addEventListener('click', function () {
-        updateContact(editFirstName.value, editLastName.value, editPhoneNumber.value, editEmailAddress.value, contact.id)
+        if(validateEditedContactData()) {
+         updateContact(editFirstName.value, editLastName.value, editPhoneNumber.value, editEmailAddress.value,
+                       contact.id)
+        } else {
+          alert('Please fill all fields before submitting')
+         }
     })
 }
 
@@ -178,6 +179,15 @@ function validateNewContactData() {
     }
 }
 
+function validateEditedContactData() {
+    var editedData = Array.from(document.getElementsByClassName('edited-element'));
+    var editedDataValues = editedData.map(input => input.value);
+    var isEveryFieldFilled = function (input) {
+        return input === '';
+    };
+    return editedDataValues.some(isEveryFieldFilled)
+}
+
 function fillCardWithData(contact, name, phone, mail) {
     name.innerHTML = contact.firstName + ' ' + contact.lastName;
     phone.innerHTML = contact.phoneNumber;
@@ -191,5 +201,9 @@ function sortContacts(contactA, contactB) {
         return 1;
     }
     return 0;
+}
+
+function syncContacts() {
+    getContacts().then(displayContacts)
 }
 
