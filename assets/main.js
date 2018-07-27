@@ -4,10 +4,19 @@ var surnameNode = document.getElementById('surname');
 var phoneNode = document.getElementById('phoneNumber');
 var emailNode = document.getElementById('emailAddress');
 var addContactButton = document.getElementById('contacts-addButton');
+var removeSelectedButton = document.getElementById('contacts-removeButton__selected');
 
 syncContacts();
 
 addContactButton.addEventListener('click', validateContactData);
+
+removeSelectedButton.addEventListener('click', function() {
+    var selectedContacts = document.querySelectorAll('.checkbox:checked');
+    selectedContacts.forEach(function (selectedItem) {
+        var contactId = selectedItem.getAttribute('id');
+        removeContact(contactId)
+    })
+});
 
 function getContacts() {
     return fetch (
@@ -93,4 +102,15 @@ function validateContactData() {
     } else {
         addNewContact()
     }
+}
+function removeContact(id) {
+    fetch(
+        'http://localhost:3000/contacts/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function () {
+        syncContacts()
+    })
 }
