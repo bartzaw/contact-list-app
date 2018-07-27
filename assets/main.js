@@ -1,4 +1,8 @@
 var contactsList = document.getElementById('contacts');
+var firstNameNode = document.getElementById('firstName');
+var surnameNode = document.getElementById('surname');
+var phoneNode = document.getElementById('phoneNumber');
+var emailNode = document.getElementById('emailAddress');
 
 function getContacts() {
     return fetch (
@@ -27,9 +31,16 @@ function createContactCard(contact) {
     contactCheckbox.type = 'checkbox';
     contactCheckbox.classList.add('contacts-checkbox');
     contactCheckbox.id = contact.id;
+    fillCardWithData(contact, name, phoneNumber, email);
     contactNode.append(name);
     contactNode.append(phoneNumber);
     contactNode.append(email);
     contactNode.append(contactCheckbox);
     contactsList.append(contactNode);
+}
+
+function fillCardWithData(contact, name, phone, mail) {
+    name.innerHTML = contact.firstName + ' ' + contact.surname;
+    phone.innerHTML = contact.phoneNumber;
+    mail.innerHTML = contact.email;
 }
