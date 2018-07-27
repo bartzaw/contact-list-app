@@ -30,5 +30,6 @@ function createContactCard(contact) {
     contactNode.append(name);
     contactNode.append(phoneNumber);
     contactNode.append(email);
+    contactNode.append(contactCheckbox);
     contactsList.append(contactNode);
 }
