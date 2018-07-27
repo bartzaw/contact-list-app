@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact List</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <ul id="contacts"></ul>
-    <script>
-
-    </script>
+    <div class="contacts-newContact">
+        <h1>Add new contact:</h1>
+        <div class="contacts-category">
+            <label class='contact-label'>First Name:</label>
+            <input id="firstName" class="contact-input">
+        </div>
+        <div class="contacts-category">
+            <label class='contact-label'>Second name:</label>
+            <input id="secondName" class="contact-input">
+        </div>
+        <div class="contacts-category">
+            <label class='contact-label'>Phone number:</label>
+            <input id="phoneNumber" class="contact-input">
+        </div>
+        <div class="contacts-category">
+            <label class='contact-label'>Email:</label>
+            <input id="emailAddress" class="contact-input">
+        </div>
+        <button class="contacts-addButton btn">Add</button>
+    </div>
+    <div class="contacts-container">
+        <ul id="contacts"></ul>
+    </div>
+    <button class="contacts-removeButton btn">Remove</button>
+    <script src="assets/main.js"></script>
 </body>
 </html>
